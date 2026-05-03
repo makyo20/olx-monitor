@@ -12,12 +12,10 @@ KEYWORDS = [
     "vaga pinhais",
     "ajudante",
     "auxiliar",
+    "alugo casa",
 ]
 
-OLX_BASE_URL = (
-    "https://www.olx.com.br/vagas-de-emprego/estado-pr"
-    "/regiao-de-curitiba-e-paranagua"
-)
+OLX_BASE_URL = "https://www.olx.com.br/pr"
 
 HEADERS = {
     "User-Agent": (
