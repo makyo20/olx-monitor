@@ -7,15 +7,27 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 CHAT_ID = os.getenv("CHAT_ID", "")
 
 KEYWORDS = [
+    # Trabajo
     "vaga",
     "vaga curitiba",
     "vaga pinhais",
     "ajudante",
     "auxiliar",
+    "emprego pinhais",
+    "contrata pinhais",
+    "serviço pinhais",
+    "oportunidade pinhais",
+    # Vivienda
     "alugo casa",
+    "quarto pinhais",
+    "alugo quarto pinhais",
+    "kitnet pinhais",
+    "república pinhais",
+    "casa pinhais",
+    "alugo curitiba uberaba",
 ]
 
-OLX_BASE_URL = "https://www.olx.com.br/pr"
+OLX_BASE_URL = "https://pr.olx.com.br/curitiba-e-regiao"
 
 HEADERS = {
     "User-Agent": (
