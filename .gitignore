@@ -1,0 +1,6 @@
+.env
+olx_seen.db
+monitor.log
+__pycache__/
+*.pyc
+*.pyo
