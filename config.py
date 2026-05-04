@@ -6,28 +6,31 @@ load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 CHAT_ID = os.getenv("CHAT_ID", "")
 
-KEYWORDS = [
-    # Trabajo
-    "vaga",
-    "vaga curitiba",
-    "vaga pinhais",
-    "ajudante",
-    "auxiliar",
-    "emprego pinhais",
-    "contrata pinhais",
-    "serviço pinhais",
-    "oportunidade pinhais",
-    # Vivienda
-    "alugo casa",
-    "quarto pinhais",
-    "alugo quarto pinhais",
-    "kitnet pinhais",
-    "república pinhais",
-    "casa pinhais",
-    "alugo curitiba uberaba",
-]
+OLX_BASE_URL_CURITIBA = "https://pr.olx.com.br/curitiba-e-regiao"
+OLX_BASE_URL_PARANA   = "https://pr.olx.com.br"
 
-OLX_BASE_URL = "https://pr.olx.com.br/curitiba-e-regiao"
+# Cada entrada: {"keyword": "...", "base_url": "..."}
+SEARCH_CONFIGS = [
+    # --- Trabajo (Curitiba/Pinhais) ---
+    {"keyword": "vaga curitiba",       "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "vaga pinhais",        "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "ajudante",            "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "auxiliar",            "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "emprego pinhais",     "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "contrata pinhais",    "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "serviço pinhais",     "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "oportunidade pinhais","base_url": OLX_BASE_URL_CURITIBA},
+    # --- Trabajo (todo Paraná) ---
+    {"keyword": "vaga",                "base_url": OLX_BASE_URL_PARANA},
+    # --- Vivienda (Curitiba/Pinhais) ---
+    {"keyword": "alugo casa",          "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "quarto pinhais",      "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "alugo quarto pinhais","base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "kitnet pinhais",      "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "república pinhais",   "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "casa pinhais",        "base_url": OLX_BASE_URL_CURITIBA},
+    {"keyword": "alugo curitiba uberaba","base_url": OLX_BASE_URL_CURITIBA},
+]
 
 HEADERS = {
     "User-Agent": (

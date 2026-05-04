@@ -5,7 +5,7 @@ import httpx
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode
 
-from config import OLX_BASE_URL, HEADERS, REQUEST_TIMEOUT, DELAY_BETWEEN_REQUESTS, KEYWORDS
+from config import SEARCH_CONFIGS, HEADERS, REQUEST_TIMEOUT, DELAY_BETWEEN_REQUESTS
 from storage import is_new
 
 logger = logging.getLogger(__name__)
@@ -72,10 +72,10 @@ def _parse_listings(html: str, keyword: str) -> list[dict]:
     return listings
 
 
-def scrape_keyword(keyword: str) -> list[dict]:
+def scrape_keyword(keyword: str, base_url: str) -> list[dict]:
     """Scrapes OLX para una keyword. Retorna lista de anuncios encontrados."""
     params = urlencode({"q": keyword})
-    url = f"{OLX_BASE_URL}?{params}"
+    url = f"{base_url}?{params}"
 
     try:
         with httpx.Client(headers=HEADERS, timeout=REQUEST_TIMEOUT, follow_redirects=True) as client:
@@ -110,8 +110,8 @@ def scrape_all() -> list[dict]:
     seen_ids: set[str] = set()
     all_new: list[dict] = []
 
-    for i, keyword in enumerate(KEYWORDS):
-        listings = scrape_keyword(keyword)
+    for i, config in enumerate(SEARCH_CONFIGS):
+        listings = scrape_keyword(config["keyword"], config["base_url"])
 
         for listing in listings:
             lid = listing["id"]
@@ -121,7 +121,7 @@ def scrape_all() -> list[dict]:
             if is_new(lid):
                 all_new.append(listing)
 
-        if i < len(KEYWORDS) - 1:
+        if i < len(SEARCH_CONFIGS) - 1:
             time.sleep(DELAY_BETWEEN_REQUESTS)
 
     logger.info("Total anuncios NUEVOS encontrados: %d", len(all_new))
